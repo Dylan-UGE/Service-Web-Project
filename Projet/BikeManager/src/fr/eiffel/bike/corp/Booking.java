@@ -1,12 +1,19 @@
 package fr.eiffel.bike.corp;
 
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-public class Booking {
+public class Booking extends UnicastRemoteObject implements IBooking{
     //map<id bike, queues>
-    Map<Integer, LinkedList<User>> queues = new HashMap<>();
+    Map<Integer, LinkedList<User>> queues;
 
-    public void rent(int id, User user){
+    protected Booking() throws RemoteException {
+        super();
+        queues = new HashMap<>();
+    }
+
+    public void rent(int id, User user) throws RemoteException{
         var listUser = queues.get(id);
         if (listUser == null){
             queues.put(id, new LinkedList<User>(List.of(user)));
@@ -17,7 +24,7 @@ public class Booking {
 
     }
 
-    public boolean isFree(int id){
+    public boolean isFree(int id) throws RemoteException{
         var listUser = queues.get(id);
         if(listUser == null || listUser.isEmpty()){
             return false;
@@ -25,7 +32,7 @@ public class Booking {
         return true;
     }
 
-    public User freePlace(int id){
+    public User freePlace(int id) throws RemoteException{
         //return user for the observer else null
         var listUser = queues.get(id);
         if(listUser == null || listUser.isEmpty()){
