@@ -5,6 +5,7 @@ public class Bike {
     private final String brand;
     private final String color;
     private final int size;
+    private final Feedback feedback;
     //Field owner
 
     public Bike(int id, String brand, String color, int size) {
@@ -12,6 +13,7 @@ public class Bike {
         this.brand = brand;
         this.color = color;
         this.size = size;
+        this.feedback = new Feedback();
     }
 
     public int getId() {
