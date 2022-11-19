@@ -5,39 +5,36 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
 public class Booking extends UnicastRemoteObject implements IBooking{
-    //map<id bike, queues>
-    Map<Integer, LinkedList<User>> queues;
+    private final Map<Bike, LinkedList<User>> bookingQueues = new HashMap<>();
 
-    protected Booking() throws RemoteException {
+    public Booking() throws RemoteException {
         super();
-        queues = new HashMap<>();
     }
 
-    public void rent(int id, User user) throws RemoteException{
-        var listUser = queues.get(id);
-        if (listUser == null){
-            queues.put(id, new LinkedList<User>(List.of(user)));
-        }
-        else{
-            listUser.offerLast(user);
-        }
-
+    public Set<Bike> getAllBikes() {
+        return bookingQueues.keySet();
     }
 
-    public boolean isFree(int id) throws RemoteException{
-        var listUser = queues.get(id);
-        if(listUser == null || listUser.isEmpty()){
-            return false;
-        }
-        return true;
+    public void rent(Bike bike, User user) throws RemoteException{
+        LinkedList<User> userLinkedList =
+                bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
+
+        userLinkedList.addLast(user);
     }
 
-    public User freePlace(int id) throws RemoteException{
-        //return user for the observer else null
-        var listUser = queues.get(id);
+    public boolean isFree(Bike bike) throws RemoteException{
+        return !Optional.of(bookingQueues.get(bike))
+                .map(List::isEmpty)
+                .orElseThrow();
+    }
+
+    public User freePlace(Bike bike) throws RemoteException{
+        var listUser = bookingQueues.get(bike);
+
         if(listUser == null || listUser.isEmpty()){
             return null;
         }
+
         return listUser.removeFirst();
     }
 }

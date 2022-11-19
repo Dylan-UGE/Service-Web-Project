@@ -31,4 +31,8 @@ public class Bike {
     public int getSize() {
         return size;
     }
+
+    public Feedback getFeedback() {
+        return feedback;
+    }
 }
