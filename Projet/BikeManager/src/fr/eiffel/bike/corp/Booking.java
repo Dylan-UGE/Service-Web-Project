@@ -23,7 +23,7 @@ public class Booking extends UnicastRemoteObject implements IBooking{
     }
 
     public boolean isFree(Bike bike) throws RemoteException{
-        return !Optional.of(bookingQueues.get(bike))
+        return !Optional.ofNullable(bookingQueues.get(bike))
                 .map(List::isEmpty)
                 .orElseThrow();
     }
