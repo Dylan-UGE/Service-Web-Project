@@ -1,30 +1,34 @@
 package fr.eiffel.bike.corp;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Feedback {
-    private final List<Integer> grades;
-    private final List<String> reviews;
+    private final User user;
 
-    public Feedback(){
-        grades = new ArrayList<>();
-        reviews = new ArrayList<>();
+    private final Bike bike;
+
+    private final int score;
+
+    private final String comment;
+
+    public Feedback(User user, Bike bike, int score, String comment) {
+        this.user = user;
+        this.bike = bike;
+        this.score = score;
+        this.comment = comment;
     }
 
-    public void addGrade(int grade){
-        grades.add(grade);
+    public User getUser() {
+        return user;
     }
 
-    public void addreview(String comment){
-        reviews.add(comment);
+    public Bike getBike() {
+        return bike;
     }
 
-    public double average(){
-        return grades.stream().mapToInt(v -> v).average().getAsDouble();
+    public int getScore() {
+        return score;
     }
 
-    public List<String> getReviews(){
-        return reviews;
+    public String getComment() {
+        return comment;
     }
 }
