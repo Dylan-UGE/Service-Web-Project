@@ -1,10 +1,12 @@
-package fr.eiffel.bike.corp;
+package fr.eiffel.bike.corp.data;
+
+import fr.eiffel.bike.corp.interf.IBooking;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-public class Booking extends UnicastRemoteObject implements IBooking{
+public class Booking extends UnicastRemoteObject implements IBooking {
     private final Map<Bike, LinkedList<User>> bookingQueues = new HashMap<>();
 
     public Booking() throws RemoteException {

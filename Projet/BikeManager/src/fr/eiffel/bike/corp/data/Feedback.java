@@ -1,4 +1,4 @@
-package fr.eiffel.bike.corp;
+package fr.eiffel.bike.corp.data;
 
 public class Feedback {
     private final User user;

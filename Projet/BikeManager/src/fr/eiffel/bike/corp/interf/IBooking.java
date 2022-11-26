@@ -1,4 +1,7 @@
-package fr.eiffel.bike.corp;
+package fr.eiffel.bike.corp.interf;
+
+import fr.eiffel.bike.corp.data.Bike;
+import fr.eiffel.bike.corp.data.User;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

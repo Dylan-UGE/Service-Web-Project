@@ -1,4 +1,4 @@
-package fr.eiffel.bike.corp;
+package fr.eiffel.bike.corp.data;
 
 public class Bike {
     private final int id;
