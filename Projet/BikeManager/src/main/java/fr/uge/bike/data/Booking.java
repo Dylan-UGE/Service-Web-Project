@@ -1,10 +1,14 @@
-package fr.uge.bike;
+package fr.uge.bike.data;
+
+import fr.uge.bike.interf.IBike;
+import fr.uge.bike.interf.IBooking;
+import fr.uge.bike.interf.IUser;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 
-public class Booking extends UnicastRemoteObject implements IBooking{
+public class Booking extends UnicastRemoteObject implements IBooking {
     private final Map<IBike, LinkedList<IUser>> bookingQueues = new HashMap<>();
 
     public Booking() throws RemoteException {

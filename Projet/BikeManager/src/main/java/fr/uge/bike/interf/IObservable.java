@@ -1,4 +1,4 @@
-package fr.uge.bike;
+package fr.uge.bike.interf;
 
 import java.rmi.RemoteException;
 

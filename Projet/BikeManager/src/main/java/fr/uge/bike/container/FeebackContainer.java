@@ -1,6 +1,6 @@
-package fr.eiffel.bike.corp.container;
+package fr.uge.bike.container;
 
-import fr.eiffel.bike.corp.data.Feedback;
+import fr.uge.bike.data.Feedback;
 
 import java.util.ArrayList;
 import java.util.List;
