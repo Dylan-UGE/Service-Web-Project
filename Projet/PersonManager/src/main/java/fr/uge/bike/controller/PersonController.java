@@ -1,4 +1,4 @@
-package fr.uge.persons.controller;
+package fr.uge.bike.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,4 +1,4 @@
-package fr.uge.persons;
+package fr.uge.bike;
 
 public class Person {
     private final String firstName;
