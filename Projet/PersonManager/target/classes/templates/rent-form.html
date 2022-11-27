@@ -5,6 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>TEST</h1>
+<h1 th:text="${session.user.username}"></h1>
+
+<select id="bs" name="bikeselector">
+    <option th:each="bike : ${bikelist}" th:value="${bike}" th:text="${bike}"></option>
+</select>
 </body>
 </html>
