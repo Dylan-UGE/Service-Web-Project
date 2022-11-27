@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Projet/BikeManager/BikeManager.iml" filepath="$PROJECT_DIR$/Projet/BikeManager/BikeManager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Projet/PersonManager/PersonManager.iml" filepath="$PROJECT_DIR$/Projet/PersonManager/PersonManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Service-Web-Project.iml" filepath="$PROJECT_DIR$/.idea/Service-Web-Project.iml" />
     </modules>
   </component>

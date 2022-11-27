@@ -10,7 +10,7 @@ public class Bike extends UnicastRemoteObject implements IBike {
     private String brand;
     private String color;
     private int size;
-    //private final Feedback feedback;
+
     //Field owner
 
     public Bike() throws RemoteException {}
@@ -59,11 +59,6 @@ public class Bike extends UnicastRemoteObject implements IBike {
     public void setSize(int size) throws RemoteException {
         this.size = size;
     }
-
-
-    /*public Feedback getFeedback() {
-        return feedback;
-    }*/
 
     @Override
     public String toString() {
