@@ -14,11 +14,12 @@ public class Booking extends UnicastRemoteObject implements IBooking{
         return bookingQueues.keySet();
     }
 
-    public void rent(IBike bike, IUser user) throws RemoteException{
+    public IUser rent(IBike bike, IUser user) throws RemoteException{
         LinkedList<IUser> userLinkedList =
                 bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
 
         userLinkedList.addLast(user);
+        return userLinkedList.getFirst();
     }
 
     public boolean isFree(IBike bike) throws RemoteException{

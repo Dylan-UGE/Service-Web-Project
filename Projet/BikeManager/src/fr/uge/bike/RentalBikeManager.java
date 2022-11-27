@@ -23,7 +23,8 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
     }
 
     public void rentBike(IUser user, IBike bike) throws RemoteException {
-        booking.rent(bike, user);
+        IUser renter = booking.rent(bike, user);
+
     }
 
     public void returnBike(IBike bike) throws RemoteException {
