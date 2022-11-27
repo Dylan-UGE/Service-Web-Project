@@ -1,4 +1,6 @@
-package fr.uge.bike;
+package fr.uge.bike.data;
+
+import fr.uge.bike.interf.IUser;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

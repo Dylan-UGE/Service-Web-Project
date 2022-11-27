@@ -1,5 +1,8 @@
 package fr.uge.bike;
 
+import fr.uge.bike.data.RentalBikeManager;
+import fr.uge.bike.interf.IRentalBikes;
+
 import java.io.IOException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;

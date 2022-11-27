@@ -1,4 +1,6 @@
-package fr.uge.bike;
+package fr.uge.bike.data;
+
+import fr.uge.bike.Function;
 
 public class Person {
     private final String firstName;

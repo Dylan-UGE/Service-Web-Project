@@ -1,9 +1,11 @@
-package fr.uge.bike;
+package fr.uge.bike.data;
+
+import fr.uge.bike.interf.IBike;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
-public class Bike extends UnicastRemoteObject implements IBike{
+public class Bike extends UnicastRemoteObject implements IBike {
     private int id;
     private String brand;
     private String color;
@@ -11,7 +13,7 @@ public class Bike extends UnicastRemoteObject implements IBike{
     //private final Feedback feedback;
     //Field owner
 
-    public Bike() throws RemoteException{};
+    public Bike() throws RemoteException {}
 
     public Bike(int id, String brand, String color, int size) throws RemoteException {
         super();
