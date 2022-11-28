@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Person form</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Person form</h1>
+<form th:action="@{/person}" method="post">
+    <div><label for="n">Username:</label>
+        <input id="n" type="text" name="username"></div>
+
+    <div><label for="e">Email:</label>
+        <input type="text" id="e" name="email"></div>
+
+    <div><button type="submit">Submit</button></div>
+</form>
+</body>
+</html>
