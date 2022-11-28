@@ -6,16 +6,6 @@
 </head>
 <body>
 <h1>Person form</h1>
-<<<<<<< HEAD
-<form th:action="@{/person}" method="post">
-    <div><label for="n">Username:</label>
-        <input id="n" type="text" name="username"></div>
-
-    <div><label for="e">Email:</label>
-        <input type="text" id="e" name="email"></div>
-
-    <div><button type="submit">Submit</button></div>
-=======
 <form th:action="@{/personmanager/select}" th:object="${user}" method="get">
     <label for="n">Username:</label>
     <input id="n" type="text" name="username">
@@ -24,7 +14,6 @@
     <input type="email" id="e" name="email">
     <br>
     <button type="submit">Submit</button>
->>>>>>> 5f52e17784da4559d37e5467fa7f4b6eb2e88d73
 </form>
 </body>
 </html>
