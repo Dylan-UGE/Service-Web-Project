@@ -23,6 +23,6 @@ public class PersonController {
                            HttpSession session) throws RemoteException {
         session.setAttribute("user", user);
 
-        return "user-post";
+        return "user-select";
     }
 }

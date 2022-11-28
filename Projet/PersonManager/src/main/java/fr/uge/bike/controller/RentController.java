@@ -32,6 +32,6 @@ public class RentController {
     @PostMapping
     public String rentBike(@ModelAttribute("bike") Bike bike, HttpSession session) throws RemoteException {
 
-        return "rent-form";
+        return "rent-post";
     }
 }

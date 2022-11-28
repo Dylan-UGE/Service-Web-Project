@@ -1,14 +1,12 @@
 package fr.uge.bike.data;
 
-import fr.uge.bike.interf.IUser;
-
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class Booking extends UnicastRemoteObject {
-    private final Map<Bike, LinkedList<IUser>> bookingQueues = new HashMap<>();
+    private final Map<Bike, LinkedList<User>> bookingQueues = new HashMap<>();
 
     public Booking() throws RemoteException {
     }
@@ -17,7 +15,7 @@ public class Booking extends UnicastRemoteObject {
         return new ArrayList<>(bookingQueues.keySet());
     }
 
-    public Set<Bike> getBikeRentByUser(IUser user) throws RemoteException {
+    public Set<Bike> getBikeRentByUser(User user) throws RemoteException {
         return bookingQueues.entrySet().stream()
                 .filter(iBikeLinkedListEntry -> iBikeLinkedListEntry.getValue().get(0).equals(user))
                 .map(Map.Entry::getKey)
@@ -28,8 +26,8 @@ public class Booking extends UnicastRemoteObject {
         bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
     }
 
-    public void rent(Bike bike, IUser user) throws RemoteException{
-        LinkedList<IUser> userLinkedList =
+    public void rent(Bike bike, User user) throws RemoteException{
+        LinkedList<User> userLinkedList =
                 bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
 
         userLinkedList.addLast(user);
@@ -41,7 +39,7 @@ public class Booking extends UnicastRemoteObject {
                 .orElseThrow();
     }
 
-    public IUser freePlace(Bike bike) throws RemoteException{
+    public User freePlace(Bike bike) throws RemoteException{
         var listUser = bookingQueues.get(bike);
 
         if(listUser == null || listUser.isEmpty()){

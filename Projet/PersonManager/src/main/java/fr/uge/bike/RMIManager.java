@@ -1,8 +1,8 @@
 package fr.uge.bike;
 
 import fr.uge.bike.data.Bike;
+import fr.uge.bike.data.User;
 import fr.uge.bike.interf.IRentalBikes;
-import fr.uge.bike.interf.IUser;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -17,11 +17,11 @@ public class RMIManager {
     public RMIManager() throws RemoteException, NotBoundException {
     }
 
-    public void addBike(IUser user, String brand, String color, int size) throws RemoteException {
-        rentalBikes.addBike(user, brand, color, size);
+    public void addBike(User user, Bike bike) throws RemoteException {
+        rentalBikes.addBike(user, bike);
     }
 
-    public void rentBike(IUser user, Bike bike) throws RemoteException {
+    public void rentBike(User user, Bike bike) throws RemoteException {
         rentalBikes.rentBike(user, bike);
     }
 

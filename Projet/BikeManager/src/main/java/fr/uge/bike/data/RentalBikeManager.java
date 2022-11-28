@@ -2,7 +2,6 @@ package fr.uge.bike.data;
 
 
 import fr.uge.bike.interf.IRentalBikes;
-import fr.uge.bike.interf.IUser;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -17,8 +16,9 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
         booking.addBike(new Bike(id++, "Btwin", "black", 50));
     }
 
-    public void addBike(IUser user, String brand, String color, int size) throws RemoteException {
-        booking.addBike(new Bike(id++, brand, color, size));
+    public void addBike(User user, Bike bike) throws RemoteException {
+        bike.setId(id++);
+        booking.addBike(bike);
     }
 
     public List<Bike> getBikes() throws RemoteException {
@@ -29,7 +29,7 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
         return booking.isFree(bike);
     }
 
-    public void rentBike(IUser user, Bike bike) throws RemoteException {
+    public void rentBike(User user, Bike bike) throws RemoteException {
         booking.rent(bike, user);
     }
 

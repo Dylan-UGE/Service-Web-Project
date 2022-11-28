@@ -1,25 +1,22 @@
 package fr.uge.bike.data;
 
-import fr.uge.bike.interf.IUser;
+import java.io.Serializable;
 
-import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
-
-public class User extends UnicastRemoteObject implements IUser {
+public class User implements Serializable {
     private final String username;
     private final String email;
 
-    public User(String username, String email) throws RemoteException {
+    public User(String username, String email) {
         super();
         this.username = username;
         this.email = email;
     }
 
-    public String getUsername() throws RemoteException{
+    public String getUsername() {
         return username;
     }
 
-    public String getEmail() throws RemoteException {
+    public String getEmail() {
         return email;
     }
 
