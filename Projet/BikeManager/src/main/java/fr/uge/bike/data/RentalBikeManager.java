@@ -9,11 +9,17 @@ import java.util.List;
 
 public class RentalBikeManager extends UnicastRemoteObject implements IRentalBikes {
     private final Booking booking = new Booking();
+    private final Observable observable = new Observable();
     private int id = 0;
 
     public RentalBikeManager() throws RemoteException {
         booking.addBike(new Bike(id++, "Decathlon", "red", 70));
         booking.addBike(new Bike(id++, "Btwin", "black", 50));
+        addObservable(new Observer());
+    }
+
+    public void addObservable(Observer obs) throws RemoteException {
+        observable.subscribe(obs);
     }
 
     public void addBike(User user, Bike bike) throws RemoteException {
@@ -30,10 +36,13 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
     }
 
     public void rentBike(User user, Bike bike) throws RemoteException {
-        booking.rent(bike, user);
+        if(booking.rent(bike, user)){
+            observable.newRent(user);
+        };
     }
 
     public void returnBike(Bike bike) throws RemoteException {
-        booking.freePlace(bike);
+        User renter = booking.freePlace(bike);
+        observable.newRent(renter);
     }
 }

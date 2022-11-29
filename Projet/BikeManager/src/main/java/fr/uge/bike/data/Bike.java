@@ -35,10 +35,9 @@ public class Bike implements Serializable {
         return feedbacks.stream().mapToInt(Feedback::getScore).average().getAsDouble();
     }
 
-
-    /*public Map<User, String> comments(){
-        return  feedbacks.stream().collect(Collectors.toMap(feedback => ))
-    }*/
+    public Map<User, String> comments(){
+        return  feedbacks.stream().collect(Collectors.toMap(Feedback::getUser, Feedback::getComment));
+    }
 
     public int getId() {
         return id;

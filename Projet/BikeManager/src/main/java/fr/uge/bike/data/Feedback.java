@@ -24,7 +24,6 @@ public class Feedback {
         return user;
     }
 
-
     public int getScore() {
         return score;
     }
