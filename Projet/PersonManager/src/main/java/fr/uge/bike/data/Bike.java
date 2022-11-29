@@ -1,7 +1,6 @@
 package fr.uge.bike.data;
 
 import java.io.Serializable;
-import java.rmi.RemoteException;
 
 public class Bike implements Serializable {
     private int id;
@@ -9,16 +8,12 @@ public class Bike implements Serializable {
     private String color;
     private int size;
 
-    //Field feeback
-    //Field owner
-
     public Bike() {}
 
     public Bike(String brand, String color, int size) {
         this.brand = brand;
         this.color = color;
         this.size = size;
-        //this.feedback = new Feedback();
     }
 
     public Bike(int id, String brand, String color, int size) {

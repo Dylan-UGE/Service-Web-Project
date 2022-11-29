@@ -1,11 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Hello Spring-MVC</title>
+    <title>Eiffel Bike Rent</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1 th:text="'Hello ' + ${session.user.username} + ' !'"></h1>
+<h1 th:text="'Hello ' + ${username} + ' !'"></h1>
 
 <form th:action="@{/rental}" method="get">
     <button type="submit">Rent a bike</button>
@@ -13,6 +13,10 @@
 
 <form th:action="@{/addbike}" method="get">
     <button type="submit">Add a new bike</button>
+</form>
+
+<form th:action="@{/return}" method="get">
+    <button type="submit">Return a bike</button>
 </form>
 </body>
 </html>

@@ -2,6 +2,7 @@ package fr.uge.bike.controller;
 
 import fr.uge.bike.RMIManager;
 import fr.uge.bike.data.Bike;
+import fr.uge.bike.data.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +31,10 @@ public class RentController {
     }
 
     @PostMapping
-    public String rentBike(@ModelAttribute("bike") Bike bike, HttpSession session) throws RemoteException {
-
+    public String rentBike(@ModelAttribute("bike") Bike bike,
+                           HttpSession session, Model model) throws RemoteException {
+        model.addAttribute("bike", bike);
+        rmiManager.rentBike((User) session.getAttribute("user"), bike);
         return "rent-post";
     }
 }

@@ -4,11 +4,12 @@ import java.io.Serializable;
 import java.util.Objects;
 
 public class User implements Serializable {
-    private final String username;
-    private final String email;
+    private String username;
+    private String email;
+
+    public User() {}
 
     public User(String username, String email) {
-        super();
         this.username = username;
         this.email = email;
     }
@@ -17,8 +18,21 @@ public class User implements Serializable {
         return username;
     }
 
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     public String getEmail() {
         return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void copyUser(User user) {
+        this.username = user.username;
+        this.email = user.email;
     }
 
     @Override

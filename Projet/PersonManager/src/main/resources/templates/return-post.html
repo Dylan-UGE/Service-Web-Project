@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Eiffel Bike Rent</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1 th:text="${session.user.username}"></h1>
+
+<form th:action="@{/addbike}" th:object="${feedback}" method="post">
+  <label for="s">Score :</label>
+  <input id="s" type="text" name="score">
+  <br>
+  <label for="c">Comment :</label>
+  <input type="text" id="c" name="comment">
+  <br>
+  <button type="submit">Confirm</button>
+</form>
+</form>
+</body>
+</html>

@@ -8,16 +8,14 @@
 <h1 th:text="${session.user.username}"></h1>
 
 <form th:action="@{/addbike}" th:object="${ibike}" method="post">
-  <label for="b">Brand :</label>
-  <input id="b" type="text" name="brand">
+  <label for="s">Score :</label>
+  <input id="s" type="text" name="score">
   <br>
-  <label for="c">Color :</label>
-  <input type="text" id="c" name="color">
+  <label for="c">Comment :</label>
+  <input type="text" id="c" name="comment">
   <br>
-  <label for="s">Size :</label>
-  <input type="number" id="s" name="size">
-  <br>
-  <button type="submit">Submit</button>
+  <button type="submit">Confirm</button>
+</form>
 </form>
 </body>
 </html>

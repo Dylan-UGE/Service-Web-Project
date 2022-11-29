@@ -4,23 +4,23 @@ import fr.uge.bike.data.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.rmi.RemoteException;
 
 @Controller
-@RequestMapping("/personmanager")
 public class PersonController {
 
-    @GetMapping
-    public String userForm() {
+    @GetMapping("/personmanager")
+    public String userForm(HttpSession session) {
+        if(session.getAttribute("user") != null) {
+            return "user-select";
+        }
+
         return "user-form";
     }
 
     @GetMapping("/select")
-    public String postUser(@ModelAttribute("user") User user,
-                           HttpSession session) throws RemoteException {
+    public String postUser(@ModelAttribute("user") User user, HttpSession session) {
         session.setAttribute("user", user);
 
         return "user-select";
