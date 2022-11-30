@@ -4,6 +4,7 @@ import fr.uge.bike.RMIManager;
 import fr.uge.bike.data.Bike;
 import fr.uge.bike.data.Feedback;
 import fr.uge.bike.data.User;
+import fr.uge.bike.utils.IntegerThymeleafUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,8 @@ public class ReturnController {
 
     private final RMIManager rmiManager;
 
+    private Bike bikeToReturn;
+
     public ReturnController(RMIManager rmiManager) {
         this.rmiManager = Objects.requireNonNull(rmiManager);
     }
@@ -32,12 +35,22 @@ public class ReturnController {
     }
 
     @PostMapping
-    public String returnPost(@ModelAttribute("bike") Bike bike,
-                             @ModelAttribute("feedback") Feedback feedback,
-                             HttpSession session) throws RemoteException {
-        User user = rmiManager.returnBike(bike);
-        feedback.setUser(user);
-        rmiManager.addFeedback(bike, feedback);
+    public String returnPost(@ModelAttribute("integerThymeleafUtil") IntegerThymeleafUtil bikeId,
+                             HttpSession session, Model model) throws RemoteException {
+        User user = (User) session.getAttribute("user");
+        bikeToReturn = rmiManager.rentedBikeOfUser(user).get(bikeId.getId());
+        rmiManager.returnBike(user, bikeToReturn);
+        model.addAttribute("bike", bikeToReturn);
         return "return-post";
+    }
+
+    @PostMapping("/feedback")
+    public String feedbackPost(@ModelAttribute("feedback")Feedback feedback, HttpSession session) throws RemoteException {
+        if (bikeToReturn == null) {
+            return "return-form";
+        }
+        feedback.setUser((User) session.getAttribute("user"));
+        rmiManager.addFeedback(bikeToReturn, feedback);
+        return "feedback-post";
     }
 }

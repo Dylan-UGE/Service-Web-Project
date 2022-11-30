@@ -21,7 +21,9 @@ public class PersonController {
 
     @GetMapping("/select")
     public String postUser(@ModelAttribute("user") User user, HttpSession session) {
-        session.setAttribute("user", user);
+        if (session.getAttribute("user") == null) {
+            session.setAttribute("user", user);
+        }
 
         return "user-select";
     }

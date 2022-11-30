@@ -11,7 +11,6 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
-import java.util.Set;
 
 public class RMIManager {
 
@@ -31,15 +30,15 @@ public class RMIManager {
         rentalBikes.rentBike(user, bike);
     }
 
-    public User returnBike(Bike bike) throws RemoteException {
-        return rentalBikes.returnBike(bike);
+    public User returnBike(User user, Bike bike) throws RemoteException {
+        return rentalBikes.returnBike(user, bike);
     }
 
     public List<Bike> getBikes() throws RemoteException {
         return rentalBikes.getBikes();
     }
 
-    public Set<Bike> rentedBikeOfUser(User user) throws RemoteException {
+    public List<Bike> rentedBikeOfUser(User user) throws RemoteException {
         return rentalBikes.rentedBikeOfUser(user);
     }
 

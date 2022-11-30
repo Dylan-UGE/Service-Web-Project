@@ -10,18 +10,19 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class RentalBikeManager extends UnicastRemoteObject implements IRentalBikes {
-    private final Map<Bike, LinkedList<User>> bookingQueues = new HashMap<>();
+    private final LinkedHashMap<Bike, LinkedList<User>> bookingQueues = new LinkedHashMap<>();
     private int id = 0;
 
     public RentalBikeManager() throws RemoteException {
-        addBike(new Bike(id++, "Decathlon", "red", 70));
-        addBike(new Bike(id++, "Btwin", "black", 50));
+        addBike(new Bike("Decathlon", "red", 70));
+        addBike(new Bike("Btwin", "black", 50));
     }
 
     public boolean addBike(Bike bike) throws RemoteException {
         bike.setId(id++);
         bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
 
+        System.out.println("New bike to rent : " + bike);
         return bookingQueues.containsKey(bike);
     }
 
@@ -30,27 +31,33 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
     }
 
     public void rentBike(User user, Bike bike) throws RemoteException {
-        bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>())
-                .add(user);
+        bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>()).add(user);
+        if(bookingQueues.get(bike).size() == 1) {
+            System.out.println("(" + user + ") " + " rent the bike " + bike);
+        }
+        else {
+            System.out.println("(" + user + ") " + " added to the booking queue of bike " + bike);
+        }
     }
 
-    public User returnBike(Bike bike) throws RemoteException {
+    public User returnBike(User user, Bike bike) throws RemoteException {
         var listUser = bookingQueues.get(bike);
 
         if(listUser == null || listUser.isEmpty()){
             return null;
         }
 
+        System.out.println("(" + user + ") " + " just return the bike " + bike);
         return listUser.removeFirst();
     }
 
-    public Set<Bike> rentedBikeOfUser(User user) throws RemoteException {
+    public List<Bike> rentedBikeOfUser(User user) throws RemoteException {
         return bookingQueues.entrySet().stream()
                 .filter(bikeLinkedListEntry -> {
                     LinkedList<User> userLinkedList = bikeLinkedListEntry.getValue();
-                    return !userLinkedList.isEmpty() && userLinkedList.getFirst().equals(user);
+                    return !userLinkedList.isEmpty() && userLinkedList.element().equals(user);
                 })
                 .map(Map.Entry::getKey)
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 }

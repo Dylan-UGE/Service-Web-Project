@@ -46,4 +46,9 @@ public class Feedback implements Serializable {
     public void setComment(String comment) {
         this.comment = comment;
     }
+
+    @Override
+    public String toString() {
+        return user + " : " + score + "/20" + " [" + comment + " ]";
+    }
 }

@@ -1,6 +1,7 @@
 package fr.uge.bike.data;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Bike implements Serializable {
     private int id;
@@ -56,5 +57,18 @@ public class Bike implements Serializable {
     @Override
     public String toString() {
         return brand + " - " + color + ", " + size;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, brand, color, size);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Bike bike = (Bike) o;
+        return id == bike.id && size == bike.size && Objects.equals(brand, bike.brand) && Objects.equals(color, bike.color);
     }
 }

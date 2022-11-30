@@ -6,16 +6,15 @@
 </head>
 <body>
 <h1 th:text="${session.user.username}"></h1>
-
-<form th:action="@{/addbike}" th:object="${ibike}" method="post">
+<p th:text="${bike}"></p>
+<form th:action="@{/return/feedback}" th:object="${feedback}" method="post">
   <label for="s">Score :</label>
-  <input id="s" type="text" name="score">
+  <input id="s" type="number" name="score" min="0" max="20">
   <br>
   <label for="c">Comment :</label>
   <input type="text" id="c" name="comment">
   <br>
   <button type="submit">Confirm</button>
-</form>
 </form>
 </body>
 </html>

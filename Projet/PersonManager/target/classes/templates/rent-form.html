@@ -5,11 +5,11 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1 th:text="${username}"></h1>
+<h1 th:text="${session.user.username}"></h1>
 
-<form th:action="@{/rental}" th:object="${bike}" method="post">
-    <select id="bs" name="bikeselector">
-        <option th:each="bike : ${bikelist}" th:value="${bike}" th:text="${bike}"></option>
+<form th:action="@{/rental}" th:object="${integerThymeleafUtil}" method="post">
+    <select id="bs" name="id">
+        <option th:each="bike : ${bikelist}" th:value="${bike.getId()}" th:text="${bike}"></option>
     </select>
 
     <button type="submit">Rent</button>

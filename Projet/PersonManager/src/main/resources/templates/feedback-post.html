@@ -1,14 +1,14 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Eiffel Bike Rent</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title>Eiffel Bike Rent</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
 <h1 th:text="${session.user.username}"></h1>
-<p th:text="${bike}"></p>
+<p th:text="${feedback}"></p>
 <form th:action="@{/select}" method="get">
-    <button type="submit">Return to selection</button>
+  <button type="submit">Return to selection</button>
 </form>
 </body>
 </html>
