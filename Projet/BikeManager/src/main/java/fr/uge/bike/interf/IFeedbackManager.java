@@ -9,6 +9,5 @@ import java.util.List;
 
 public interface IFeedbackManager extends Remote {
     boolean addFeedback(Bike bike, Feedback feedback) throws RemoteException;
-
     List<Feedback> getFeedbacksOfBike(Bike bike) throws RemoteException;
 }

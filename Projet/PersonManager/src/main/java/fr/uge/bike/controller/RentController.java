@@ -22,25 +22,33 @@ public class RentController {
 
     private final RMIManager rmiManager;
 
-    private final List<Bike> bikeList;
-
     public RentController(RMIManager rmiManager) throws RemoteException {
         this.rmiManager = Objects.requireNonNull(rmiManager);
-        this.bikeList = rmiManager.getBikes();
     }
 
     @GetMapping
-    public String rentForm(Model model) {
-        model.addAttribute("bikelist", bikeList);
+    public String rentForm(Model model) throws RemoteException {
+        model.addAttribute("bikelist", List.copyOf(rmiManager.getBikes().values()));
         return "rent-form";
     }
 
     @PostMapping
     public String rentBike(@ModelAttribute("integerThymeleafUtil") IntegerThymeleafUtil bikeId,
                            HttpSession session, Model model) throws RemoteException {
-        Bike bike = bikeList.get(bikeId.getId());
+        Bike bike = rmiManager.getBikes().get(bikeId.getId());
         model.addAttribute("bike", bike);
         rmiManager.rentBike((User) session.getAttribute("user"), bike);
         return "rent-post";
+    }
+
+    @GetMapping("/addbike")
+    public String rentForm() {
+        return "add-bike-form";
+    }
+
+    @PostMapping("/addbike")
+    public String rentBike(@ModelAttribute("bike") Bike bike) throws RemoteException {
+        rmiManager.addBike(bike);
+        return "add-bike-post";
     }
 }

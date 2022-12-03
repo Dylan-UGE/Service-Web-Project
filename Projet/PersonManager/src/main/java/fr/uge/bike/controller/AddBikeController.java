@@ -21,15 +21,5 @@ public class AddBikeController {
         this.rmiManager = Objects.requireNonNull(rmiManager);
     }
 
-    @GetMapping
-    public String rentForm() {
-        return "add-bike-form";
-    }
 
-    @PostMapping
-    public String rentBike(@ModelAttribute("bike") Bike bike) throws RemoteException {
-        rmiManager.addBike(bike);
-
-        return "add-bike-post";
-    }
 }

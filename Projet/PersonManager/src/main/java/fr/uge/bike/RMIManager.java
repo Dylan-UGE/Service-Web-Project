@@ -11,6 +11,8 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class RMIManager {
 
@@ -34,12 +36,12 @@ public class RMIManager {
         return rentalBikes.returnBike(user, bike);
     }
 
-    public List<Bike> getBikes() throws RemoteException {
-        return rentalBikes.getBikes();
+    public  Map<Integer, Bike> getBikes() throws RemoteException {
+        return rentalBikes.getBikes().stream().collect(Collectors.toMap(Bike::getId, k -> k));
     }
 
-    public List<Bike> rentedBikeOfUser(User user) throws RemoteException {
-        return rentalBikes.rentedBikeOfUser(user);
+    public Map<Integer, Bike> rentedBikeOfUser(User user) throws RemoteException {
+        return rentalBikes.rentedBikeOfUser(user).stream().collect(Collectors.toMap(Bike::getId, k -> k));
     }
 
     public void addFeedback(Bike bike, Feedback feedback) throws RemoteException {

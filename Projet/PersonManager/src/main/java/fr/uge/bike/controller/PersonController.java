@@ -15,7 +15,6 @@ public class PersonController {
         if(session.getAttribute("user") != null) {
             return "user-select";
         }
-
         return "user-form";
     }
 

@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
 import java.rmi.RemoteException;
+import java.util.Collection;
+import java.util.List;
 import java.util.Objects;
 
 @Controller
@@ -30,7 +32,7 @@ public class ReturnController {
 
     @GetMapping
     public String returnForm(Model model, HttpSession session) throws RemoteException {
-        model.addAttribute("bikelist", rmiManager.rentedBikeOfUser((User) session.getAttribute("user")));
+        model.addAttribute("bikelist", List.copyOf(rmiManager.rentedBikeOfUser((User) session.getAttribute("user")).values()));
         return "return-form";
     }
 
