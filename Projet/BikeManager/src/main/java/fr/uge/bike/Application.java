@@ -1,5 +1,6 @@
 package fr.uge.bike;
 
+import fr.uge.bike.manager.BuyBikeManager;
 import fr.uge.bike.manager.FeedbackManager;
 import fr.uge.bike.manager.RentalBikeManager;
 
@@ -12,8 +13,10 @@ public class Application {
         try{
             System.out.println("Start Server");
             Registry registry = LocateRegistry.createRegistry(1099);
-            registry.rebind("/RentalBikes", new RentalBikeManager());
+            var tmp = new RentalBikeManager();
+            registry.rebind("/RentalBikes", tmp);
             registry.rebind("/FeedbackManager", new FeedbackManager());
+            registry.rebind("/BuyBike", new BuyBikeManager(tmp));
         }catch (Exception e){
             throw  new IOException(e);
         }
