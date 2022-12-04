@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from GetBikeService WSDL service -->
+
+  <service name="GetBike" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://bike"/>
+      <parameter name="wsdlServiceElement" value="GetBikeService"/>
+      <parameter name="schemaQualified" value="http://bike,http://data.bike.uge.fr"/>
+      <parameter name="wsdlServicePort" value="GetBike"/>
+      <parameter name="className" value="bike.GetBike"/>
+      <parameter name="wsdlPortType" value="GetBike"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://bike" xmlns:retNS="http://bike" xmlns:rtns="http://data.bike.uge.fr" name="getBike" qname="operNS:getBike" returnQName="retNS:getBikeReturn" returnType="rtns:Bike" soapAction="">
+      </operation>
+      <operation xmlns:operNS="http://bike" xmlns:retNS="http://bike" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="buyBikes" qname="operNS:buyBikes" returnQName="retNS:buyBikesReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://bike" xmlns:tns="http://data.bike.uge.fr" qname="pns:user" type="tns:User"/>
+        <parameter xmlns:pns="http://bike" xmlns:tns="http://data.bike.uge.fr" qname="pns:lst" type="tns:Bike"/>
+      </operation>
+      <parameter name="allowedMethods" value="buyBikes getBike"/>
+
+      <typeMapping xmlns:ns="http://data.bike.uge.fr" qname="ns:Bike" type="java:fr.uge.bike.data.Bike" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+      <typeMapping xmlns:ns="http://data.bike.uge.fr" qname="ns:User" type="java:fr.uge.bike.data.User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>

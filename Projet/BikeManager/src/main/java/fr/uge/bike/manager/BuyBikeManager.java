@@ -26,6 +26,7 @@ public class BuyBikeManager extends UnicastRemoteObject implements IBuyBike {
 
     @Override
     public boolean buyBike(User user, List<Bike> bike) throws RemoteException {
-        return false;
+        bike.forEach(e -> rtm.deleteBike(user, e));
+        return true; // Voir pour Thread Safe
     }
 }

@@ -60,4 +60,10 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
                 .map(Map.Entry::getKey)
                 .collect(Collectors.toList());
     }
+
+    public boolean deleteBike(User user, Bike bike) {
+        bookingQueues.remove(bike);
+        System.out.println("The bike " + bike + " have be buy by " + user);
+        return true;
+    }
 }
