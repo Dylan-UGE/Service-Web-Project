@@ -30,14 +30,24 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
         return new ArrayList<>(bookingQueues.keySet());
     }
 
-    public void rentBike(User user, Bike bike) throws RemoteException {
-        bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>()).add(user);
-        if(bookingQueues.get(bike).size() == 1) {
+    public Boolean rentBike(User user, Bike bike) throws RemoteException {
+        LinkedList<User> userLinkedList = bookingQueues.computeIfAbsent(bike, bike1 -> new LinkedList<>());
+
+        if(userLinkedList.contains(user)) {
+            return null;
+        }
+
+        userLinkedList.add(user);
+        boolean rented = bookingQueues.get(bike).size() == 1;
+
+        if(rented) {
             System.out.println("(" + user + ") " + " rent the bike " + bike);
         }
         else {
             System.out.println("(" + user + ") " + " added to the booking queue of bike " + bike);
         }
+
+        return rented;
     }
 
     public User returnBike(User user, Bike bike) throws RemoteException {

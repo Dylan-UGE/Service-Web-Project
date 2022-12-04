@@ -10,7 +10,6 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -28,8 +27,8 @@ public class RMIManager {
         rentalBikes.addBike(bike);
     }
 
-    public void rentBike(User user, Bike bike) throws RemoteException {
-        rentalBikes.rentBike(user, bike);
+    public Boolean rentBike(User user, Bike bike) throws RemoteException {
+       return rentalBikes.rentBike(user, bike);
     }
 
     public User returnBike(User user, Bike bike) throws RemoteException {

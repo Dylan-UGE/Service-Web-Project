@@ -27,7 +27,11 @@ public class RentController {
     }
 
     @GetMapping
-    public String rentForm(Model model) throws RemoteException {
+    public String rentForm(Model model, HttpSession session) throws RemoteException {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/personmanager";
+        }
+
         model.addAttribute("bikelist", List.copyOf(rmiManager.getBikes().values()));
         return "rent-form";
     }
@@ -36,19 +40,10 @@ public class RentController {
     public String rentBike(@ModelAttribute("integerThymeleafUtil") IntegerThymeleafUtil bikeId,
                            HttpSession session, Model model) throws RemoteException {
         Bike bike = rmiManager.getBikes().get(bikeId.getId());
+        Boolean rented = rmiManager.rentBike((User) session.getAttribute("user"), bike);
+
         model.addAttribute("bike", bike);
-        rmiManager.rentBike((User) session.getAttribute("user"), bike);
+        model.addAttribute("rented", rented);
         return "rent-post";
-    }
-
-    @GetMapping("/addbike")
-    public String rentForm() {
-        return "add-bike-form";
-    }
-
-    @PostMapping("/addbike")
-    public String rentBike(@ModelAttribute("bike") Bike bike) throws RemoteException {
-        rmiManager.addBike(bike);
-        return "add-bike-post";
     }
 }

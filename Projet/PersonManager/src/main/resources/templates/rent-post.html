@@ -6,7 +6,11 @@
 </head>
 <body>
 <h1 th:text="${session.user.username}"></h1>
-<p th:text="${bike}"></p>
+<div th:switch="${rented}">
+    <p th:case="true" th:text="${bike}"></p>
+    <p th:case="null" th:text="'(' + ${bike} + ') is already rent by you or you are already in the bookingqueue'"></p>
+    <p th:case="*" th:text="'(' + ${bike} + ') is already rent, add to bookingqueue'"></p>
+</div>
 <form th:action="@{/select}" method="get">
     <button type="submit">Return to selection</button>
 </form>

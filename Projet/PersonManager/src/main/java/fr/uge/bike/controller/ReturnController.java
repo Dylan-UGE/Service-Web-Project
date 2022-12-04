@@ -32,6 +32,10 @@ public class ReturnController {
 
     @GetMapping
     public String returnForm(Model model, HttpSession session) throws RemoteException {
+        if (session.getAttribute("user") == null) {
+            return "redirect:/personmanager";
+        }
+
         model.addAttribute("bikelist", List.copyOf(rmiManager.rentedBikeOfUser((User) session.getAttribute("user")).values()));
         return "return-form";
     }
@@ -40,6 +44,7 @@ public class ReturnController {
     public String returnPost(@ModelAttribute("integerThymeleafUtil") IntegerThymeleafUtil bikeId,
                              HttpSession session, Model model) throws RemoteException {
         User user = (User) session.getAttribute("user");
+
         bikeToReturn = rmiManager.rentedBikeOfUser(user).get(bikeId.getId());
         rmiManager.returnBike(user, bikeToReturn);
         model.addAttribute("bike", bikeToReturn);
@@ -48,9 +53,10 @@ public class ReturnController {
 
     @PostMapping("/feedback")
     public String feedbackPost(@ModelAttribute("feedback")Feedback feedback, HttpSession session) throws RemoteException {
-        if (bikeToReturn == null) {
-            return "return-form";
+        if (session.getAttribute("user") == null || bikeToReturn == null) {
+            return "redirect:/personmanager";
         }
+
         feedback.setUser((User) session.getAttribute("user"));
         rmiManager.addFeedback(bikeToReturn, feedback);
         return "feedback-post";

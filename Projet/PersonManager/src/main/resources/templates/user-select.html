@@ -2,21 +2,36 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Eiffel Bike Rent</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <style>
+        body {
+            display: flex;
+            align-items:center;
+            justify-content: center;
+        }
+        form {
+            margin-bottom: 10px;
+        }
+        button {
+            margin: 0 auto;
+            display: block;
+            height: 40px;
+            width: 180px;
+        }
+    </style>
 </head>
 <body>
-<h1 th:text="'Hello ' + ${session.user.username} + ' !'"></h1>
-
-<form th:action="@{/rental}" method="get">
-    <button type="submit">Rent a bike</button>
-</form>
-
-<form th:action="@{/rental/addbike}" method="get">
-    <button type="submit">Add a new bike</button>
-</form>
-
-<form th:action="@{/return}" method="get">
-    <button type="submit">Return a bike</button>
-</form>
+<div>
+    <h1 style="text-align: center" th:text="'Hello ' + ${session.user.username} + ' !'"></h1>
+        <form th:action="@{/rental}" method="get">
+            <button type="submit">Rent a bike</button>
+        </form>
+        <form th:action="@{/addbike}" method="get">
+            <button type="submit">Add a new bike</button>
+        </form>
+        <form th:action="@{/return}" method="get">
+            <button type="submit">Return a bike</button>
+        </form>
+</div>
 </body>
 </html>

@@ -15,11 +15,16 @@ public class PersonController {
         if(session.getAttribute("user") != null) {
             return "user-select";
         }
+
         return "user-form";
     }
 
     @GetMapping("/select")
     public String postUser(@ModelAttribute("user") User user, HttpSession session) {
+        if (user.getUsername() == null) {
+            return "redirect:/personmanager";
+        }
+
         if (session.getAttribute("user") == null) {
             session.setAttribute("user", user);
         }
