@@ -17,14 +17,13 @@ public class GetBike {
 	public GetBike() throws RemoteException, NotBoundException{
 		registry = LocateRegistry.getRegistry(null);
 		rentalBikes = (IBuyBike) registry.lookup("/BuyBike");
-		System.out.println("Allo");
 	}
 	
 	public Bike[] getBike() throws RemoteException {
 		return rentalBikes.getBikes();
 	}
 	
-	public boolean buyBikes(User user, Bike[] lst) throws RemoteException {
+	public boolean buyBikes(User user, int money, Bike[] lst) throws RemoteException {
 		rentalBikes.buyBike(user, Arrays.stream(lst).toList());
 		return true; // Faire la banque 
 	}

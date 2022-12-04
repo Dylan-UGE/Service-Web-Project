@@ -8,6 +8,6 @@
 package bike;
 
 public interface GetBike extends java.rmi.Remote {
+    public boolean buyBikes(fr.uge.bike.data.User user, int money, fr.uge.bike.data.Bike[] lst) throws java.rmi.RemoteException;
     public fr.uge.bike.data.Bike[] getBike() throws java.rmi.RemoteException;
-    public boolean buyBikes(fr.uge.bike.data.User user, fr.uge.bike.data.Bike[] lst) throws java.rmi.RemoteException;
 }

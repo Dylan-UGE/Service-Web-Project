@@ -14,8 +14,8 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
     private int id = 0;
 
     public RentalBikeManager() throws RemoteException {
-        addBike(new Bike("Decathlon", "red", 70));
-        addBike(new Bike("Btwin", "black", 50));
+        addBike(new Bike("Decathlon", "red", 70, 25));
+        addBike(new Bike("Btwin", "black", 50, 20));
     }
 
     public boolean addBike(Bike bike) throws RemoteException {
@@ -79,7 +79,7 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
 
     public boolean deleteBike(User user, Bike bike) {
         bookingQueues.remove(bike);
-        System.out.println("The bike " + bike + " have be buy by " + user);
+        System.out.println("The bike " + bike + " was bought by " + user);
         return true;
     }
 }

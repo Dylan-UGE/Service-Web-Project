@@ -20,11 +20,12 @@
       <parameter name="className" value="bike.GetBikeSoapBindingImpl"/>
       <parameter name="wsdlPortType" value="GetBike"/>
       <parameter name="typeMappingVersion" value="1.2"/>
-      <operation name="getBike" qname="operNS:getBike" xmlns:operNS="http://bike" returnQName="retNS:getBikeReturn" xmlns:retNS="http://bike" returnType="rtns:Bike" xmlns:rtns="http://data.bike.uge.fr" soapAction="" >
-      </operation>
       <operation name="buyBikes" qname="operNS:buyBikes" xmlns:operNS="http://bike" returnQName="retNS:buyBikesReturn" xmlns:retNS="http://bike" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
         <parameter qname="pns:user" xmlns:pns="http://bike" type="tns:User" xmlns:tns="http://data.bike.uge.fr"/>
+        <parameter qname="pns:money" xmlns:pns="http://bike" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
         <parameter qname="pns:lst" xmlns:pns="http://bike" type="tns:Bike" xmlns:tns="http://data.bike.uge.fr"/>
+      </operation>
+      <operation name="getBike" qname="operNS:getBike" xmlns:operNS="http://bike" returnQName="retNS:getBikeReturn" xmlns:retNS="http://bike" returnType="rtns:Bike" xmlns:rtns="http://data.bike.uge.fr" soapAction="" >
       </operation>
       <parameter name="allowedMethods" value="buyBikes getBike"/>
 

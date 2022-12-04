@@ -44,16 +44,16 @@ public class GetBikeProxy implements bike.GetBike {
     return getBike;
   }
   
+  public boolean buyBikes(fr.uge.bike.data.User user, int money, fr.uge.bike.data.Bike[] lst) throws java.rmi.RemoteException{
+    if (getBike == null)
+      _initGetBikeProxy();
+    return getBike.buyBikes(user, money, lst);
+  }
+  
   public fr.uge.bike.data.Bike[] getBike() throws java.rmi.RemoteException{
     if (getBike == null)
       _initGetBikeProxy();
     return getBike.getBike();
-  }
-  
-  public boolean buyBikes(fr.uge.bike.data.User user, fr.uge.bike.data.Bike[] lst) throws java.rmi.RemoteException{
-    if (getBike == null)
-      _initGetBikeProxy();
-    return getBike.buyBikes(user, lst);
   }
   
   

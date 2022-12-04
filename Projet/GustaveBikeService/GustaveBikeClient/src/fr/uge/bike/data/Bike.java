@@ -14,6 +14,8 @@ public class Bike  implements java.io.Serializable {
 
     private int id;
 
+    private int price;
+
     private int size;
 
     public Bike() {
@@ -23,10 +25,12 @@ public class Bike  implements java.io.Serializable {
            java.lang.String brand,
            java.lang.String color,
            int id,
+           int price,
            int size) {
            this.brand = brand;
            this.color = color;
            this.id = id;
+           this.price = price;
            this.size = size;
     }
 
@@ -92,6 +96,26 @@ public class Bike  implements java.io.Serializable {
 
 
     /**
+     * Gets the price value for this Bike.
+     * 
+     * @return price
+     */
+    public int getPrice() {
+        return price;
+    }
+
+
+    /**
+     * Sets the price value for this Bike.
+     * 
+     * @param price
+     */
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+
+    /**
      * Gets the size value for this Bike.
      * 
      * @return size
@@ -129,6 +153,7 @@ public class Bike  implements java.io.Serializable {
              (this.color!=null &&
               this.color.equals(other.getColor()))) &&
             this.id == other.getId() &&
+            this.price == other.getPrice() &&
             this.size == other.getSize();
         __equalsCalc = null;
         return _equals;
@@ -148,6 +173,7 @@ public class Bike  implements java.io.Serializable {
             _hashCode += getColor().hashCode();
         }
         _hashCode += getId();
+        _hashCode += getPrice();
         _hashCode += getSize();
         __hashCodeCalc = false;
         return _hashCode;
@@ -174,6 +200,12 @@ public class Bike  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("id");
         elemField.setXmlName(new javax.xml.namespace.QName("http://data.bike.uge.fr", "id"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("price");
+        elemField.setXmlName(new javax.xml.namespace.QName("http://data.bike.uge.fr", "price"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

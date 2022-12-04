@@ -7,8 +7,8 @@
   <ns1:parameter name="dotNetSoapEncFix" value="true"/>
   <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
   <ns1:parameter name="sendXMLDeclaration" value="true"/>
-  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
   <ns1:requestFlow>
    <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
     <ns1:parameter name="scope" value="session"/>
@@ -22,22 +22,34 @@
  <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
  <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
  <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
- <ns1:service name="GetBike" provider="java:RPC" style="wrapped" use="literal">
-  <ns3:operation name="getBike" qname="ns1:getBike" returnQName="ns1:getBikeReturn" returnType="ns2:Bike" soapAction="" xmlns:ns1="http://bike" xmlns:ns2="http://data.bike.uge.fr" xmlns:ns3="http://xml.apache.org/axis/wsdd/"/>
-  <ns1:operation name="buyBikes" qname="ns3:buyBikes" returnQName="ns3:buyBikesReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://bike" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-   <ns1:parameter qname="ns3:user" type="ns4:User" xmlns:ns4="http://data.bike.uge.fr"/>
-   <ns1:parameter qname="ns3:lst" type="ns5:Bike" xmlns:ns5="http://data.bike.uge.fr"/>
-  </ns1:operation>
-  <ns1:parameter name="allowedMethods" value="buyBikes getBike"/>
+ <ns1:service name="BanqueServiceSOAP" provider="java:RPC" style="document" use="literal">
+  <ns1:parameter name="allowedMethods" value="*"/>
   <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="BanqueService"/>
+  <ns1:parameter name="className" value="com.wmmdev.BanqueService.BanqueServiceSOAPSkeleton"/>
+  <ns1:parameter name="wsdlServicePort" value="BanqueServiceSOAP"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://wmmdev.com/BanqueService/"/>
+  <ns1:parameter name="wsdlServiceElement" value="BanqueService"/>
+  <ns1:parameter name="schemaUnqualified" value="http://wmmdev.com/BanqueService/"/>
+  <ns2:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns1:&gt;enoughMoneyRequest" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:com.wmmdev.BanqueService.EnoughMoneyRequest" xmlns:ns1="http://wmmdev.com/BanqueService/" xmlns:ns2="http://xml.apache.org/axis/wsdd/"/>
+ </ns1:service>
+ <ns1:service name="GetBike" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="buyBikes" qname="ns2:buyBikes" returnQName="ns2:buyBikesReturn" returnType="xsd:boolean" soapAction="" xmlns:ns2="http://bike" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:user" type="ns3:User" xmlns:ns3="http://data.bike.uge.fr"/>
+   <ns1:parameter qname="ns2:money" type="xsd:int"/>
+   <ns1:parameter qname="ns2:lst" type="ns4:Bike" xmlns:ns4="http://data.bike.uge.fr"/>
+  </ns1:operation>
+  <ns1:operation name="getBike" qname="ns5:getBike" returnQName="ns5:getBikeReturn" returnType="ns6:Bike" soapAction="" xmlns:ns5="http://bike" xmlns:ns6="http://data.bike.uge.fr"/>
+  <ns1:parameter name="allowedMethods" value="buyBikes getBike"/>
   <ns1:parameter name="wsdlPortType" value="GetBike"/>
-  <ns1:parameter name="className" value="bike.GetBike"/>
-  <ns1:parameter name="wsdlServicePort" value="GetBike"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
   <ns1:parameter name="schemaQualified" value="http://bike,http://data.bike.uge.fr"/>
+  <ns1:parameter name="wsdlServicePort" value="GetBike"/>
+  <ns1:parameter name="className" value="bike.GetBike"/>
   <ns1:parameter name="wsdlTargetNamespace" value="http://bike"/>
   <ns1:parameter name="wsdlServiceElement" value="GetBikeService"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns6:Bike" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.bike.data.Bike" xmlns:ns6="http://data.bike.uge.fr"/>
-  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.bike.data.User" xmlns:ns7="http://data.bike.uge.fr"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns7:Bike" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.bike.data.Bike" xmlns:ns7="http://data.bike.uge.fr"/>
+  <ns1:typeMapping deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle="" qname="ns8:User" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" type="java:fr.uge.bike.data.User" xmlns:ns8="http://data.bike.uge.fr"/>
  </ns1:service>
  <ns1:service name="AdminService" provider="java:MSG">
   <ns1:parameter name="allowedMethods" value="AdminService"/>

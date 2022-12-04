@@ -9,16 +9,19 @@ public class Bike implements Serializable {
     private String color;
     private int size;
 
+    private int price;
+
     public Bike() {}
 
-    public Bike(String brand, String color, int size) {
+    public Bike(String brand, String color, int size, int price) {
         this.brand = brand;
         this.color = color;
         this.size = size;
+        this.price = price;
     }
 
-    public Bike(int id, String brand, String color, int size) {
-        this(brand, color, size);
+    public Bike(int id, String brand, String color, int size, int price) {
+        this(brand, color, size, price);
         this.id = id;
     }
 
@@ -38,6 +41,10 @@ public class Bike implements Serializable {
         return size;
     }
 
+    public int getPrice() {
+        return price;
+    }
+
     public void setId(int id) {
         this.id = id;
     }
@@ -54,6 +61,10 @@ public class Bike implements Serializable {
         this.size = size;
     }
 
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return brand + " - " + color + ", " + size;
@@ -61,7 +72,7 @@ public class Bike implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, brand, color, size);
+        return Objects.hash(id, brand, color, size, price);
     }
 
     @Override
@@ -69,6 +80,6 @@ public class Bike implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Bike bike = (Bike) o;
-        return id == bike.id && size == bike.size && Objects.equals(brand, bike.brand) && Objects.equals(color, bike.color);
+        return id == bike.id && size == bike.size && price == bike.price && Objects.equals(brand, bike.brand) && Objects.equals(color, bike.color);
     }
 }
