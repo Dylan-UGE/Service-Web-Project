@@ -49,6 +49,6 @@ public class RentController {
     @PostMapping("/addbike")
     public String rentBike(@ModelAttribute("bike") Bike bike) throws RemoteException {
         rmiManager.addBike(bike);
-        return "add-bike-post";
+        return "user-select";
     }
 }
