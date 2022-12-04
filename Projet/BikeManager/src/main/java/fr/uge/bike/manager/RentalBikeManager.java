@@ -47,8 +47,14 @@ public class RentalBikeManager extends UnicastRemoteObject implements IRentalBik
             return null;
         }
 
-        System.out.println("(" + user + ") " + " just return the bike " + bike);
-        return listUser.removeFirst();
+        System.out.println("(" + user + ") " + " return the bike " + bike);
+        listUser.removeFirst();
+        if(listUser == null || listUser.isEmpty()){
+            return null;
+        }
+        User newRenter = listUser.getFirst();
+        System.out.println(newRenter+" rent the bike "+ bike);
+        return newRenter;
     }
 
     public List<Bike> rentedBikeOfUser(User user) throws RemoteException {
